@@ -1,0 +1,58 @@
+schema: ansg.external_dialect_resource_intake/1
+status: intake_plan_not_thesis_data
+purpose: >-
+  Prepare a small, traceable auxiliary resource set for dialect identification,
+  token segmentation, POS inspection, and lexicon review. These resources are
+  not narrative-story training data and do not replace ANHC, CKG, or CST-Onto.
+sources:
+  - id: qcri_arabic_pos_dialect
+    url: https://huggingface.co/datasets/QCRI/arabic_pos_dialect
+    license_as_published: Apache-2.0
+    size_as_published: 350 items each for Egyptian, Levantine, Gulf, Maghrebi
+    use: [auxiliary_dialect_identification, token_segmentation, pos_pipeline_inspection]
+    source_text_type: social_media_tweets
+    caveats: [small, privacy_information_in_dataset_card_incomplete]
+    story_generation_training: false
+    ckg_or_cst_onto: false
+    local_status: not_downloaded
+
+  - id: lahga_arabic_dialects
+    url: https://huggingface.co/datasets/lahga/arabic-dialects
+    license_as_published: CC-BY-SA-4.0
+    snapshot: 2026-10-02
+    reported_size: 25072_dialect_forms_3313_examples
+    use: [candidate_lexicon_review, dialect_prompt_support]
+    caveats: [3606_forms_flagged_needs_review, other_forms_not_all_native_verified, share_alike_terms]
+    story_generation_training: false
+    ckg_or_cst_onto: false
+    local_status: not_downloaded
+
+  - id: madar_parallel_corpus
+    url: https://camel.abudhabi.nyu.edu/madar-parallel-corpus/
+    license_as_published: internal_research_and_evaluation_only
+    use: [internal_dialect_evaluation]
+    restrictions: [do_not_modify, do_not_redistribute, do_not_sublicense]
+    story_generation_training: false
+    local_status: not_downloaded
+    acquisition: official_terms_and_access_form; no request submitted
+
+  - id: shami_corpus
+    url: https://github.com/GU-CLASP/shami-corpus
+    use: [candidate_dialect_support_after_text_rights_review]
+    local_status: not_downloaded
+    restriction: repository_code_license_not_assumed_to_clear_underlying_tweet_text
+
+  - id: islam_po_20_country_synthetic
+    url: https://huggingface.co/datasets/ISLAM-PO/arab-dialects-20-countries-3m
+    use: [format_reader_smoke_check_only]
+    excluded_from: [natural_dialect_training, dialect_authenticity_evaluation, cultural_knowledge]
+    reason: template_generated_synthetic_data_and_open_native_review
+    local_status: not_downloaded
+
+global_rules:
+  merge_into_anhc: false
+  include_as_story_tokens: false
+  convert_source_tags_to_gold_labels: false
+  create_or_replace_ckg: false
+  model_training_started: false
+  github_repo_or_pr_modified: false
