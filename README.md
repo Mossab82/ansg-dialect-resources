@@ -14,7 +14,7 @@ These are auxiliary dialect/POS/lexicon resources. They are **not ANHC story dat
 
 ```bash
 python -m pip install -r requirements.txt
-python train_qcri_dialect_id.py --output-dir outputs/qcri_dia
+python scripts/train_qcri_dialect_id.py --output-dir outputs/qcri_dia
 ```
 
 The script uses the QCRI dataset's published five-fold IDs for out-of-fold accuracy and macro-F1, then fits a final char-TF-IDF + LinearSVC baseline on all 1,400 rows. Outputs are `metrics.json` and a local `qcri_dia_baseline.joblib`; do not commit them with tweet text.
@@ -22,7 +22,7 @@ The script uses the QCRI dataset's published five-fold IDs for out-of-fold accur
 ## Prepare local auxiliary files
 
 ```bash
-python prepare_external_dialect_auxiliary.py --output-dir data/external_dialects
+python scripts/prepare_external_dialect_auxiliary.py --output-dir data/external_dialects
 ```
 
 The script writes QCRI rows and Lahga lexicon candidates locally with source/license metadata. It does not add them to Git history. Review row-level provenance, QCRI privacy considerations, Lahga `needs_review`, and share-alike obligations before any wider distribution.
